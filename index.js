@@ -10,13 +10,13 @@ async function main() {
   console.info(chalk.blue("=".repeat(30)));
   console.info(chalk.blue("Connected to database!"));
   console.info(chalk.blue("=".repeat(30)));
+  const dbConnection = await dbConfig();
   inquirer
     .prompt([
       {
         type: "list",
-        name: "menuChoice",
-        message:
-          "What would you like to do? Select an option from the list below. ",
+        name: "choice",
+        message: "What would you like to do?",
         choices: [
           {
             name: "View all departments",
@@ -30,21 +30,54 @@ async function main() {
             name: "View all employees",
             value: "viewEmployees",
           },
+          {
+            name: "Add a department",
+            value: "addDepartment",
+          },
+          {
+            name: "Add a role",
+            value: "addRole",
+          },
+          {
+            name: "Add an employee",
+            value: "addEmployee",
+          },
+          {
+            name: "Update an employee role",
+            value: "updateRole",
+          },
         ],
       },
     ])
-    .then((answer) => async {
-      console.log(answer);
-      const dbConnection = await dbConfig();
-      //Use an if/else or switch case to figure out which menu choice they picked, and call viewDepartment, viewRole, etc, accordingly.
-      //Start with view(), then go into adding employees, departments, etc.
-      //Pull in method findAll() with connection, which will send SELECT * FROM department.
-      //Console.table on the data that comes back from that, and it will show the data in a nice format.
-      //switch (choice) {
-     // case "viewDepartment:
-//viewDept();
-//case "viewRole"
-
+    .then(function (value) {
+      switch (value.choice) {
+        case "viewDepartments":
+          viewDepartments();
+          break;
+        case "viewRoles":
+          viewRoles();
+          break;
+        case "viewEmployees":
+          viewEmployees();
+          break;
+        case "addDepartment":
+          addDepartment();
+          break;
+        case "addRole":
+          addRole();
+          break;
+        case "addEmployee":
+          addEmployee();
+          break;
+        case "updateRole":
+          updateRole();
+          break;
+      }
     });
+
+  function viewDepartments() {}
+  //Start with view(), then go into adding employees, departments, etc.
+  //Pull in method findAll() with connection, which will send SELECT * FROM department.
+  //Console.table on the data that comes back from that, and it will show the data in a nice format.
 }
 main();

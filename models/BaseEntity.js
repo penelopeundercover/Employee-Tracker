@@ -7,6 +7,7 @@ class BaseEntity {
     return this.dbConnection.query("SELECT * FROM ??", [table]);
   }
   findById(columns, table, id) {
+    //SELECT column FROM table WHERE id = whatever it equals. That's what the question marks mean.
     return this.dbConnection.query("SELECT ?? FROM ?? WHERE id = ?", [
       columns,
       table,
