@@ -2,15 +2,17 @@ require("dotenv").config();
 const chalk = require("chalk");
 const inquirer = require("inquirer");
 const dbConfig = require("./config/dbConfig");
+const BaseEntity = require("./models/BaseEntity");
 
 async function main() {
+  const dbConnection = await dbConfig();
   console.info(chalk.blue("=".repeat(30)));
   console.info(chalk.blue("Connecting to database..."));
   console.info(chalk.blue("=".repeat(30)));
   console.info(chalk.blue("=".repeat(30)));
   console.info(chalk.blue("Connected to database!"));
   console.info(chalk.blue("=".repeat(30)));
-  const dbConnection = await dbConfig();
+
   inquirer
     .prompt([
       {
@@ -75,9 +77,11 @@ async function main() {
       }
     });
 
-  function viewDepartments() {}
-  //Start with view(), then go into adding employees, departments, etc.
-  //Pull in method findAll() with connection, which will send SELECT * FROM department.
-  //Console.table on the data that comes back from that, and it will show the data in a nice format.
+  function viewDepartments() {
+    //Start with view(), then go into adding employees, departments, etc.
+    //Pull in method findAll() with connection, which will send SELECT * FROM department.
+    //Console.table on the data that comes back from that, and it will show the data in a nice format.
+  }
 }
+
 main();

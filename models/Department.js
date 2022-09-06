@@ -1,3 +1,5 @@
+const BaseEntity = require("./BaseEntity");
+
 class Department extends BaseEntity {
   constructor(dbConnection) {
     super(dbConnection);
@@ -8,3 +10,5 @@ class Department extends BaseEntity {
     return super.findById("*", "departments", id);
   }
 }
+
+module.exports = Department;

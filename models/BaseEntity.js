@@ -1,4 +1,5 @@
 const dbConnection = await dbConfig();
+
 class BaseEntity {
   constructor(dbConnection) {
     this.dbConnection = dbConnection;
@@ -7,7 +8,7 @@ class BaseEntity {
     return this.dbConnection.query("SELECT * FROM ??", [table]);
   }
   findById(columns, table, id) {
-    //SELECT column FROM table WHERE id = whatever it equals. That's what the question marks mean.
+    //SELECT column FROM table WHERE id = whatever it equals. That's what the question marks mean. Prepared statements.
     return this.dbConnection.query("SELECT ?? FROM ?? WHERE id = ?", [
       columns,
       table,
@@ -20,3 +21,5 @@ class BaseEntity {
 
   deleteById(id) {}
 }
+
+module.exports = new BaseEntity(dbConnection);
