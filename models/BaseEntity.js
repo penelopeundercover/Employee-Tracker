@@ -1,4 +1,4 @@
-const dbConnection = await dbConfig();
+const dbConnection = require("../config/dbConfig");
 
 class BaseEntity {
   constructor(dbConnection) {
