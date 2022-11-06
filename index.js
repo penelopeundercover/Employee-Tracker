@@ -2,6 +2,7 @@ require("dotenv").config();
 const chalk = require("chalk");
 const inquirer = require("inquirer");
 const dbConfig = require("./config/dbConfig");
+const { findAll } = require("./models/BaseEntity");
 const BaseEntity = require("./models/BaseEntity");
 
 async function main() {
@@ -78,10 +79,22 @@ async function main() {
     });
 
   function viewDepartments() {
+    findAll("department");
+    console.table;
+
     //Start with view(), then go into adding employees, departments, etc.
     //Pull in method findAll() with connection, which will send SELECT * FROM department.
     //Console.table on the data that comes back from that, and it will show the data in a nice format.
   }
+
+  function viewRoles() {
+    findAll("role");
+  }
+  function viewEmployees() {}
+  function addDepartment() {}
+  function addRole() {}
+  function addEmployee() {}
+  function updateRole() {}
 }
 
 main();
