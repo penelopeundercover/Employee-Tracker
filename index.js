@@ -80,7 +80,7 @@ async function main() {
 
   function viewDepartments() {
     findAll("department");
-    console.table;
+    console.table(results);
 
     //Start with view(), then go into adding employees, departments, etc.
     //Pull in method findAll() with connection, which will send SELECT * FROM department.

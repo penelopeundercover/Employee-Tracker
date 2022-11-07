@@ -5,6 +5,8 @@ class BaseEntity {
     this.dbConnection = dbConnection;
   }
   findAll(table) {
+    console.log(table, "table");
+    console.log(this, "this");
     return this.dbConnection.query("SELECT * FROM ??", [table]);
   }
   findById(columns, table, id) {
