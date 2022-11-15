@@ -88,17 +88,20 @@ async function viewDepartments(model) {
   const results = await model.findAll();
   const [departmentList] = results;
   console.table(departmentList);
+  init();
 }
 
 async function viewRoles(model) {
   const results = await model.findAll();
   const [roleList] = results;
   console.table(roleList);
+  init();
 }
 async function viewEmployees(model) {
   const results = await model.findAll();
   const [employeesList] = results;
   console.table(employeesList);
+  init();
 }
 function addDepartment() {}
 function addRole() {}
