@@ -15,13 +15,12 @@ class BaseEntity {
       id,
     ]);
   }
-  //Future goal: to write these functions.
-  // create(obj) {
-  //     }
+  //TODO: Write these functions.
+  create(obj) {}
 
-  // updateById(id) {}
+  updateById(id) {}
 
-  // deleteById(id) {}
+  deleteById(id) {}
 }
 
 module.exports = BaseEntity;
