@@ -1,7 +1,7 @@
 USE employees_db;
 
 INSERT INTO department
-(name)
+(department_name)
 VALUES
 ("Earthworks"), 
 ("Estimating"),

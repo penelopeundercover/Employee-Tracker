@@ -4,6 +4,9 @@ class Department extends BaseEntity {
   constructor(dbConnection) {
     super(dbConnection);
   }
+  findAll() {
+    return super.findAll("department");
+  }
 
   findById() {
     //return super.findById(All columns, table, id);

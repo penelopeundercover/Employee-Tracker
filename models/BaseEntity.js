@@ -5,8 +5,6 @@ class BaseEntity {
     this.dbConnection = dbConnection;
   }
   findAll(table) {
-    console.log(table, "table");
-    console.log(this, "this");
     return this.dbConnection.query("SELECT * FROM ??", [table]);
   }
   findById(columns, table, id) {
@@ -17,11 +15,13 @@ class BaseEntity {
       id,
     ]);
   }
-  create(obj) {}
+  //Future goal: to write these functions.
+  // create(obj) {
+  //     }
 
-  updateById(id) {}
+  // updateById(id) {}
 
-  deleteById(id) {}
+  // deleteById(id) {}
 }
 
-module.exports = new BaseEntity(dbConnection);
+module.exports = BaseEntity;

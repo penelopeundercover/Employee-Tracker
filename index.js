@@ -2,10 +2,11 @@ require("dotenv").config();
 const chalk = require("chalk");
 const inquirer = require("inquirer");
 const dbConfig = require("./config/dbConfig");
-const { findAll } = require("./models/BaseEntity");
-const BaseEntity = require("./models/BaseEntity");
+const Departmentjs = require("./models/Department");
+const Rolejs = require("./models/Role");
+const Employeejs = require("./models/Employee");
 
-async function main() {
+async function init() {
   const dbConnection = await dbConfig();
   console.info(chalk.blue("=".repeat(30)));
   console.info(chalk.blue("Connecting to database..."));
@@ -13,6 +14,10 @@ async function main() {
   console.info(chalk.blue("=".repeat(30)));
   console.info(chalk.blue("Connected to database!"));
   console.info(chalk.blue("=".repeat(30)));
+
+  const Department = new Departmentjs(dbConnection);
+  const Role = new Rolejs(dbConnection);
+  const Employee = new Employeejs(dbConnection);
 
   inquirer
     .prompt([
@@ -55,13 +60,13 @@ async function main() {
     .then(function (value) {
       switch (value.choice) {
         case "viewDepartments":
-          viewDepartments();
+          viewDepartments(Department);
           break;
         case "viewRoles":
-          viewRoles();
+          viewRoles(Role);
           break;
         case "viewEmployees":
-          viewEmployees();
+          viewEmployees(Employee);
           break;
         case "addDepartment":
           addDepartment();
@@ -77,24 +82,27 @@ async function main() {
           break;
       }
     });
-
-  function viewDepartments() {
-    findAll("department");
-    console.table(results);
-
-    //Start with view(), then go into adding employees, departments, etc.
-    //Pull in method findAll() with connection, which will send SELECT * FROM department.
-    //Console.table on the data that comes back from that, and it will show the data in a nice format.
-  }
-
-  function viewRoles() {
-    findAll("role");
-  }
-  function viewEmployees() {}
-  function addDepartment() {}
-  function addRole() {}
-  function addEmployee() {}
-  function updateRole() {}
 }
 
-main();
+async function viewDepartments(model) {
+  const results = await model.findAll();
+  const [departmentList] = results;
+  console.table(departmentList);
+}
+
+async function viewRoles(model) {
+  const results = await model.findAll();
+  const [roleList] = results;
+  console.table(roleList);
+}
+async function viewEmployees(model) {
+  const results = await model.findAll();
+  const [employeesList] = results;
+  console.table(employeesList);
+}
+function addDepartment() {}
+function addRole() {}
+function addEmployee() {}
+function updateRole() {}
+
+init();
