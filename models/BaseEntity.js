@@ -15,12 +15,16 @@ class BaseEntity {
       id,
     ]);
   }
-  //TODO: Write these functions.
-  create(obj) {}
+  //Future goal: Write these functions with prepared statements.
+  // create(obj) {
+  //   return this.dbConnection.query("INSERT ? INTO ??", [value, table])
+  // }
 
-  updateById(id) {}
+  // updateById(id) {
+  //   return this.dbConnection.query("")
+  // }
 
-  deleteById(id) {}
+  // deleteById(id) {}
 }
 
 module.exports = BaseEntity;

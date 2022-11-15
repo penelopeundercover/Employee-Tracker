@@ -12,6 +12,10 @@ class Department extends BaseEntity {
     //return super.findById(All columns, table, id);
     return super.findById("*", "department", id);
   }
+
+  create() {
+    return super.create();
+  }
 }
 
 module.exports = Department;
